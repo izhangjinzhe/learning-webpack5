@@ -10,4 +10,6 @@ cli不是必须的，他只是处理webpack命令及参数，现在框架基本�
 
 ### 搭建webpack环境，简单模拟不同引入方式([v1.0.0](https://gitee.com/izhangjinzhe/learnwebpack/tree/v1.0.0))
 
+### 配置文件的简单使用([v1.0.1](https://gitee.com/izhangjinzhe/learnwebpack/tree/v1.0.1))
+
 
