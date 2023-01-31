@@ -7,5 +7,20 @@ module.exports = {
     path: path.resolve(__dirname, '../bundle'),
     // 输出文件名
     filename: "bundle.js"
+  },
+  module:{
+    rules: [
+      // Rule对象
+      {
+        test: /\.css$/,
+        use: [
+          // Use对象
+          {
+            loader: 'css-loader',
+            options: {}
+          }
+        ]
+      }
+    ]
   }
 }
