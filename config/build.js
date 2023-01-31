@@ -18,19 +18,41 @@ module.exports = {
         use: [
           // Use对象,从后往前，从右往左
           // 简写
-          // 'css-loader'
           'style-loader',
           {
             loader: 'css-loader',
-            options: {}
+            options: {
+              // 后方需要重新loader的数量
+              importLoaders: 1
+            }
           },
+          // 单独抽离文件
+          // {
+          //   loader: 'postcss-loader',
+          //   options: {
+          //     postcssOptions:{
+          //       plugins:[
+          //         // require('autoprefixer'),
+          //         require('postcss-preset-env') // 包含autoprefixer
+          //       ]
+          //     }
+          //   }
+          // }
+          'postcss-loader',
         ]
       },
       {
         test: /\.less$/,
         use: [
           'style-loader',
-          'css-loader',
+          {
+            loader: 'css-loader',
+            options: {
+              // 后方需要重新loader的数量
+              importLoaders: 2
+            }
+          },
+          'postcss-loader',
           'less-loader',
         ]
       }

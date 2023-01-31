@@ -1,5 +1,2 @@
-/*@import "component.less";*/
-
-.text{
-    color: red;
-}
+@import "postcss.css";
+@import "component.less";
