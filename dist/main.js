@@ -1,0 +1,1 @@
+(()=>{var o={506:o=>{o.exports={multiple:function(o,r){return o*r}}}},r={};function t(e){var n=r[e];if(void 0!==n)return n.exports;var s=r[e]={exports:{}};return o[e](s,s.exports,t),s.exports}(()=>{"use strict";const{multiple:o}=t(506);console.log(1+2),console.log(o(3,4))})()})();

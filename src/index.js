@@ -1,10 +1,9 @@
-import css from './index.scss'
-import aa from './assets/1.jpeg'
-import { a } from './a'
+// ESModule
+import sum from "./js/sum.js";
 
-console.log( a );
-if ( process.env.NODE_ENV === "development" ) {
-  console.log( "baseurl is localhost" )
-} else {
-  console.log( "baseurl is imooc.com" )
-}
+// CommonJS
+const {multiple} = require("./js/multiple")
+
+console.log(sum(1,2))
+
+console.log(multiple(3,4))
