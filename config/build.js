@@ -16,13 +16,14 @@ module.exports = {
         // 简写
         // loader: 'css-loader',
         use: [
-          // Use对象
+          // Use对象,从后往前，从右往左
           // 简写
           // 'css-loader'
+          'style-loader',
           {
             loader: 'css-loader',
             options: {}
-          }
+          },
         ]
       }
     ]

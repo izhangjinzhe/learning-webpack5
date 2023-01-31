@@ -16,5 +16,8 @@ cli不是必须的，他只是处理webpack命令及参数，现在框架基本�
 
 ### css-loader的使用([v1.0.3](https://gitee.com/izhangjinzhe/learnwebpack/tree/v1.0.3))
 
+### style-loader的使用([v1.0.4](https://gitee.com/izhangjinzhe/learnwebpack/tree/v1.0.4))
+
+
 
 
