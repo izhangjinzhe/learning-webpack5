@@ -15,10 +15,13 @@ cli不是必须的，他只是处理webpack命令及参数，现在框架基本�
 ### 配置文件重构重命名([v1.0.2](https://gitee.com/izhangjinzhe/learnwebpack/tree/v1.0.2))
 
 ### css-loader的使用([v1.0.3](https://gitee.com/izhangjinzhe/learnwebpack/tree/v1.0.3))
+编译css文件，行内模式（不常用），cli模式（已废弃），配置文件模式（常用）
 
 ### style-loader的使用([v1.0.4](https://gitee.com/izhangjinzhe/learnwebpack/tree/v1.0.4))
+创建style标签，将编译后的css插入，顺序：后到前，右到左
 
 ### less-loader的使用([v1.0.5](https://gitee.com/izhangjinzhe/learnwebpack/tree/v1.0.5))
+可单独使用lessc命令，编译less文件
 
 
 
