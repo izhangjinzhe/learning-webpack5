@@ -14,5 +14,7 @@ cli不是必须的，他只是处理webpack命令及参数，现在框架基本�
 
 ### 配置文件重构重命名([v1.0.2](https://gitee.com/izhangjinzhe/learnwebpack/tree/v1.0.2))
 
+### css-loader的使用([v1.0.3](https://gitee.com/izhangjinzhe/learnwebpack/tree/v1.0.3))
+
 
 

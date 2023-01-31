@@ -13,8 +13,12 @@ module.exports = {
       // Rule对象
       {
         test: /\.css$/,
+        // 简写
+        // loader: 'css-loader',
         use: [
           // Use对象
+          // 简写
+          // 'css-loader'
           {
             loader: 'css-loader',
             options: {}
