@@ -4,9 +4,9 @@ module.exports = {
   entry: path.resolve(__dirname, '../src/main.js'),
   output: {
     // 必须为绝对路径
-    path: path.resolve(__dirname, '../bundle'),
+    path: path.resolve(__dirname, '../dist'),
     // 输出文件名
-    filename: "bundle.js"
+    filename: "main.js"
   },
   module:{
     rules: [
@@ -23,7 +23,9 @@ module.exports = {
             loader: 'css-loader',
             options: {
               // 后方需要重新loader的数量
-              importLoaders: 1
+              importLoaders: 1,
+              // 启用commonjs语法
+              esModule: false
             }
           },
           // 单独抽离文件
@@ -49,11 +51,25 @@ module.exports = {
             loader: 'css-loader',
             options: {
               // 后方需要重新loader的数量
-              importLoaders: 2
+              importLoaders: 2,
+              // 启用commonjs语法
+              esModule: false
             }
           },
           'postcss-loader',
           'less-loader',
+        ]
+      },
+      {
+        test: /\.(jpe?g|png|gif)$/,
+        use: [
+          {
+            loader: 'file-loader',
+            options: {
+              // 设置路径
+              publicPath: './dist'
+            }
+          }
         ]
       }
     ]

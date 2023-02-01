@@ -43,3 +43,7 @@ cli不是必须的，他只是处理webpack命令及参数，现在框架基本�
 
 - 加前缀：autoprefixer
 - 使用未来特性：postcss-preset-env(包含autoprefixer)
+
+### file-loader的使用([v1.0.8](https://gitee.com/izhangjinzhe/learnwebpack/tree/v1.0.8))
+
+处理图片资源，以图片为模块处理到静态文件夹。注意高版本default、esModule等配置问题。

@@ -1,2 +1,2 @@
 @import "postcss.css";
-@import "component.less";
+@import "less-loader!component.less";
