@@ -47,3 +47,7 @@ cli不是必须的，他只是处理webpack命令及参数，现在框架基本�
 ### file-loader的使用([v1.0.8](https://gitee.com/izhangjinzhe/learnwebpack/tree/v1.0.8))
 
 处理图片资源，以图片为模块处理到静态文件夹。注意高版本default、esModule等配置问题。
+
+### url-loader的使用([v1.0.9](https://gitee.com/izhangjinzhe/learnwebpack/tree/v1.0.9))
+
+同file-loader差不多，小图片可以转换base64。

@@ -64,10 +64,15 @@ module.exports = {
         test: /\.(jpe?g|png|gif)$/,
         use: [
           {
-            loader: 'file-loader',
+            loader: 'url-loader',
             options: {
-              // 设置路径
-              publicPath: './dist'
+              limit: 8 * 1024,
+              // 拼接路径
+              publicPath: './dist/img',
+              // 输出路径
+              outputPath: 'img',
+              // 文件名称占位符
+              name: '[name].[hash:6].[ext]'
             }
           }
         ]
