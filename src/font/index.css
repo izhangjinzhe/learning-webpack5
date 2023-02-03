@@ -1,0 +1,22 @@
+@font-face {
+    font-family: 'ali';
+    src: url("Alimama_DongFangDaKai_Regular.otf") format('otf');
+    src: url("Alimama_DongFangDaKai_Regular.woff") format('woff');
+    src: url("Alimama_DongFangDaKai_Regular.woff2") format('woff2');
+    src: url("Alimama_DongFangDaKai_Regular.ttf") format('truetype');
+}
+
+@font-face {
+    font-family: 'iconfont';
+    src: url("./iconfont/iconfont.ttf") format('truetype');
+    src: url("./iconfont/iconfont.woff") format('woff');
+    src: url("./iconfont/iconfont.woff2") format('woff2');
+}
+
+.iconfont{
+    font-family: iconfont;
+}
+
+.icon-homefill:before {
+    content: "\e6bb";
+}

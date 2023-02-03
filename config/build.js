@@ -6,12 +6,14 @@ module.exports = {
     // 必须为绝对路径
     path: path.resolve(__dirname, '../dist'),
     // 输出文件名
-    filename: "main.js"
+    filename: "main.js",
+
   },
   module:{
     rules: [
       // Rule对象
       {
+        // 处理css
         test: /\.css$/,
         // 简写
         // loader: 'css-loader',
@@ -44,6 +46,7 @@ module.exports = {
         ]
       },
       {
+        // 处理less
         test: /\.less$/,
         use: [
           'style-loader',
@@ -61,21 +64,60 @@ module.exports = {
         ]
       },
       {
+        // 处理图片
         test: /\.(jpe?g|png|gif)$/,
-        use: [
-          {
-            loader: 'url-loader',
-            options: {
-              limit: 8 * 1024,
-              // 拼接路径
-              publicPath: './dist/img',
-              // 输出路径
-              outputPath: 'img',
-              // 文件名称占位符
-              name: '[name].[hash:6].[ext]'
-            }
+        // webpack5配置
+        // type: 'asset/resource', // file-loader
+
+        // asset/resource 配置
+        // generator:{
+        //   filename: '[name].[hash:6][ext]',
+        //   // 拼接路径
+        //   publicPath: './dist/img/',
+        //   // 输出路径
+        //   outputPath: 'img',
+        // }
+
+        // type: 'asset/inline', // url-loader
+
+        type: 'asset', // 自动判断大小打包
+        // asset配置
+        generator:{
+          filename: '[name].[hash:6][ext]',
+          // 拼接路径
+          publicPath: './dist/img/',
+          // 输出路径
+          outputPath: 'img',
+        },
+        parser: {
+          dataUrlCondition: {
+            maxSize: 8 * 1024 // 4kb
           }
-        ]
+        }
+
+        // use: [
+        //   {
+        //     loader: 'url-loader',
+        //     options: {
+        //       limit: 8 * 1024,
+        //       // 拼接路径
+        //       publicPath: './dist/img',
+        //       // 输出路径
+        //       outputPath: 'img',
+        //       // 文件名称占位符
+        //       name: '[name].[hash:6].[ext]'
+        //     }
+        //   }
+        // ]
+      },
+      {
+        test: /\.(ttf|woff|woff2|otf)$/,
+        type: 'asset/resource',
+        generator: {
+          outputPath: 'font/',
+          filename: '[name].[hash:6][ext]',
+          publicPath: './dist/font/'
+        }
       }
     ]
   }

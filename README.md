@@ -41,8 +41,8 @@ cli不是必须的，他只是处理webpack命令及参数，现在框架基本�
 
 `postcss --use autoprefixer -o ./src/css/postcss1.css ./src/css/postcss.css`
 
-- 加前缀：autoprefixer
-- 使用未来特性：postcss-preset-env(包含autoprefixer)
+- autoprefixer: 加前缀
+- postcss-preset-env(包含autoprefixer): 使用未来特性
 
 ### file-loader的使用([v1.0.8](https://gitee.com/izhangjinzhe/learnwebpack/tree/v1.0.8))
 
@@ -51,3 +51,9 @@ cli不是必须的，他只是处理webpack命令及参数，现在框架基本�
 ### url-loader的使用([v1.0.9](https://gitee.com/izhangjinzhe/learnwebpack/tree/v1.0.9))
 
 同file-loader差不多，小图片可以转换base64。
+
+### asset_module_type的使用([v1.1.0](https://gitee.com/izhangjinzhe/learnwebpack/tree/v1.1.0))
+webpack5内部集成静态资源打包  
+- asset/resource: file-loader（处理图片，字体等文件）
+- asset/inline: url-loader（图片转换base64）
+- asset: 可自动判断图片大小（url-loader）

@@ -1,2 +1,3 @@
 @import "postcss.css";
 @import "less-loader!component.less";
+@import "../font/index.css";
