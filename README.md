@@ -57,3 +57,8 @@ webpack5内部集成静态资源打包
 - asset/resource: file-loader（处理图片，字体等文件）
 - asset/inline: url-loader（图片转换base64）
 - asset: 可自动判断图片大小（url-loader）
+
+### clean-webpack-plugin的使用([v1.1.1](https://gitee.com/izhangjinzhe/learnwebpack/tree/v1.1.1))
+
+用于在构建前删除构建文件
+
