@@ -1,10 +1,9 @@
 // ESModule
 import sum from "./js/sum.js";
+import './js/component'
 
 // CommonJS
 const {multiple} = require("./js/multiple")
-
-import './js/component'
 
 console.log(sum(1,2))
 

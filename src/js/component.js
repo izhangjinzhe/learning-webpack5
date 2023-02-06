@@ -1,6 +1,5 @@
 import '../css/index.css'
 // import '../css/component.less'
-
 import bg from '../static/img/bg.png'
 
 function component(){

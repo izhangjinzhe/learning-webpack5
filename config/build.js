@@ -1,5 +1,7 @@
 const path = require("path");
 const { CleanWebpackPlugin } = require('clean-webpack-plugin')
+const HtmlWebpackPlugin = require('html-webpack-plugin')
+
 module.exports = {
   // 可以为相对路径或绝对路径
   entry: path.resolve(__dirname, '../src/main.js'),
@@ -124,6 +126,11 @@ module.exports = {
   },
   plugins: [
     // 删除构建文件
-    new CleanWebpackPlugin()
+    new CleanWebpackPlugin(),
+    // index模板
+    new HtmlWebpackPlugin({
+      title: 'test',
+      template: './public/index.html'
+    })
   ]
 }
