@@ -1,6 +1,7 @@
 const path = require("path");
 const { CleanWebpackPlugin } = require('clean-webpack-plugin')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
+const { DefinePlugin } = require('webpack')
 
 module.exports = {
   // 可以为相对路径或绝对路径
@@ -88,7 +89,7 @@ module.exports = {
         generator:{
           filename: '[name].[hash:6][ext]',
           // 拼接路径
-          publicPath: './dist/img/',
+          publicPath: './img/',
           // 输出路径
           outputPath: 'img',
         },
@@ -119,7 +120,7 @@ module.exports = {
         generator: {
           outputPath: 'font/',
           filename: '[name].[hash:6][ext]',
-          publicPath: './dist/font/'
+          publicPath: './font/'
         }
       }
     ]
@@ -131,6 +132,10 @@ module.exports = {
     new HtmlWebpackPlugin({
       title: 'test',
       template: './public/index.html'
+    }),
+    // 定义全局变量
+    new DefinePlugin({
+      BASE_URL: '"./"'
     })
   ]
 }
