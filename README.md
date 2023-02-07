@@ -64,5 +64,5 @@ webpack5内部集成静态资源打包
 
 ### html-webpack-plugin的使用([v1.1.2](https://gitee.com/izhangjinzhe/learnwebpack/tree/v1.1.2))
 
-用于在构建前删除构建文件
+用于定义html模板
 
