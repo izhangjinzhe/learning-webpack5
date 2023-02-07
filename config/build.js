@@ -3,6 +3,8 @@ const { CleanWebpackPlugin } = require('clean-webpack-plugin')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const { DefinePlugin } = require('webpack')
 
+const CopyPlugin = require('copy-webpack-plugin')
+
 module.exports = {
   // 可以为相对路径或绝对路径
   entry: path.resolve(__dirname, '../src/main.js'),
@@ -10,7 +12,7 @@ module.exports = {
     // 必须为绝对路径
     path: path.resolve(__dirname, '../dist'),
     // 输出文件名
-    filename: "main.js",
+    filename: "js/main.js",
 
   },
   module:{
@@ -136,6 +138,19 @@ module.exports = {
     // 定义全局变量
     new DefinePlugin({
       BASE_URL: '"./"'
+    }),
+    // 复制根目录下的文件
+    new CopyPlugin({
+      patterns:[
+        {
+          // 目录
+          from: 'public',
+          globOptions:{
+            // 忽略
+            ignore: ['**/index.html']
+          }
+        }
+      ]
     })
   ]
 }

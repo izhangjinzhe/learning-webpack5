@@ -60,14 +60,17 @@ webpack5内部集成静态资源打包
 
 ### clean-webpack-plugin的使用([v1.1.1](https://gitee.com/izhangjinzhe/learnwebpack/tree/v1.1.1))
 
-用于在构建前删除构建文件
+用于在构建前删除构建文件。
 
 ### html-webpack-plugin的使用([v1.1.2](https://gitee.com/izhangjinzhe/learnwebpack/tree/v1.1.2))
 
-用于定义html模板
+用于定义html模板。
 
 ### DefinePlugin的使用([v1.1.3](https://gitee.com/izhangjinzhe/learnwebpack/tree/v1.1.3))
 
-webpack内置，用于定义全局变量，注意字符串格式
+webpack内置，用于定义全局变量，注意字符串格式。
 
+### copy-webpack-plugin的使用([v1.1.4](https://gitee.com/izhangjinzhe/learnwebpack/tree/v1.1.4))
+
+用于复制根目录下的文件，注意高版本下的api配置问题。
 
