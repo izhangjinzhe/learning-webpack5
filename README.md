@@ -74,3 +74,7 @@ webpack内置，用于定义全局变量，注意字符串格式。
 
 用于复制根目录下的文件，注意高版本下的api配置问题。
 
+### webpack打包后内部结构([v1.1.5](https://gitee.com/izhangjinzhe/learnwebpack/tree/v1.1.5))
+
+[语雀文档](https://www.yuque.com/izhangjinzhe/developer/ygvm72gncn5kae2d)
+
