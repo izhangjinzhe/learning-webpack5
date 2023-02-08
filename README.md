@@ -78,3 +78,7 @@ webpack内置，用于定义全局变量，注意字符串格式。
 
 [语雀文档](https://www.yuque.com/izhangjinzhe/developer/ygvm72gncn5kae2d)
 
+### source-map的使用([v1.1.6](https://gitee.com/izhangjinzhe/learnwebpack/tree/v1.1.6))
+
+1. 设置 `devtool: 'source-map'`。
+2. 浏览器打开源代码映射（默认打开）
