@@ -89,3 +89,15 @@ webpack内置，用于定义全局变量，注意字符串格式。
 8. nosource-source-map：有提示，但是删除对源代码的映射
 9. 语法`[inline-|hidden-|eval-][nosources-][cheap-[module-]]source-map`
 5. [文档](https://webpack.docschina.org/configuration/devtool/#root)
+
+### babel的使用([v1.1.7](https://gitee.com/izhangjinzhe/learnwebpack/tree/v1.1.7))
+[文档](https://babel.docschina.org/)  
+Babel 是一个工具链，主要用于在当前和旧的浏览器或环境中，将 ECMAScript 2015+ 代码转换为 JavaScript 向后兼容版本的代码。
+- `@babel/core`：babel核心包，微内核，实现功能需安装插件
+- `@babel/cli`：babel命令行工具  
+- `@babel/preset-env`：一个智能预设，它允许您使用最新的JavaScript
+- `babel ./src/main.js --out-dir ./src/babel --plugins=@babel/plugin-transform-arrow-functions,@babel/plugin-transform-block-scoping`
+#### 原理
+源代码 -> 词法分析 -> tokens -> 语法分析 -> AST -> 遍历 -> 访问 -> 应用插件 -> 新AST -> 生成新代码  
+
+[文档](https://github.com/jamiebuilds/the-super-tiny-compiler)
