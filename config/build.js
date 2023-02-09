@@ -7,7 +7,7 @@ const CopyPlugin = require('copy-webpack-plugin')
 
 module.exports = {
   mode: 'development',
-  devtool: 'source-map',
+  devtool: 'hidden-source-map',
   // 可以为相对路径或绝对路径
   entry: path.resolve(__dirname, '../src/main.js'),
   output: {

@@ -79,6 +79,13 @@ webpack内置，用于定义全局变量，注意字符串格式。
 [语雀文档](https://www.yuque.com/izhangjinzhe/developer/ygvm72gncn5kae2d)
 
 ### source-map的使用([v1.1.6](https://gitee.com/izhangjinzhe/learnwebpack/tree/v1.1.6))
-
-1. 设置 `devtool: 'source-map'`。
-2. 浏览器打开源代码映射（默认打开）
+1. false：不生成source-map
+2. source-map：生成source-map独立文件
+3. eval-source-map：source-map以DataUrl添加到eval函数后面
+4. inline-source-map：source-map以DataUrl添加到bundle文件最后
+5. cheap-source-map：低开销的的source-map，没有生成列映射
+6. cheap-module-source-map:同上，对loader也会简化
+7. hidden-source-map：删除对source-map的引用
+8. nosource-source-map：有提示，但是删除对源代码的映射
+9. 语法`[inline-|hidden-|eval-][nosources-][cheap-[module-]]source-map`
+5. [文档](https://webpack.docschina.org/configuration/devtool/#root)
