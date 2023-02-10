@@ -1,4 +1,4 @@
-function commonjs(a, b){
+const commonjs = (a, b) => {
   return a*b
 }
 

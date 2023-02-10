@@ -1,4 +1,4 @@
-function esmodule(a, b){
+const esmodule = (a, b) => {
   return a+b
 }
 

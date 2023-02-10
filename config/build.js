@@ -21,6 +21,23 @@ module.exports = {
     rules: [
       // Rule对象
       {
+        test: /\.js$/,
+        use: [
+          {
+            loader: 'babel-loader',
+            options: {
+              presets: [
+                // ['@babel/preset-env',{target: 'chrome 88'}]
+              ],
+              plugins: [
+                // '@babel/plugin-transform-arrow-functions',
+                // '@babel/plugin-transform-block-scoping'
+              ]
+            }
+          }
+        ]
+      },
+      {
         // 处理css
         test: /\.css$/,
         // 简写

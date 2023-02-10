@@ -101,3 +101,12 @@ Babel 是一个工具链，主要用于在当前和旧的浏览器或环境中�
 源代码 -> 词法分析 -> tokens -> 语法分析 -> AST -> 遍历 -> 访问 -> 应用插件 -> 新AST -> 生成新代码  
 
 [文档](https://github.com/jamiebuilds/the-super-tiny-compiler)
+
+#### babel-loader
+webpack中调用`@babel-core`的工具，可调用`.browerslistrc`配置文件转换，
+
+#### 废弃Stage-X预设
+[文档](https://babel.docschina.org/docs/en/presets/#stage-x-%E5%AE%9E%E9%AA%8C%E6%80%A7%E9%A2%84%E8%AE%BE) 
+
+#### polyfill
+向后兼容javascript语法
