@@ -21,7 +21,10 @@ module.exports = {
     rules: [
       // Rule对象
       {
-        test: /\.js$/,
+        // jsx js
+        test: /\.jsx?$/,
+        // 排除
+        exclude: /node_modules/,
         use: [
           {
             loader: 'babel-loader',
@@ -34,6 +37,15 @@ module.exports = {
                 // '@babel/plugin-transform-block-scoping'
               ]
             }
+          }
+        ]
+      },
+      {
+        test: /\.ts$/,
+        exclude: /node_modules/,
+        use: [
+          {
+            loader: 'babel-loader'
           }
         ]
       },

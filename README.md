@@ -110,3 +110,28 @@ webpack中调用`@babel-core`的工具，可调用`.browerslistrc`配置文件�
 
 #### polyfill
 向后兼容javascript语法
+[配置](https://github.com/zloirock/core-js#babelpolyfill)
+- `@babel/polyfill`：_已废弃_
+- `useBuiltIns: false`：停用
+- `useBuiltIns: 'usage'`：根据项目里使用的引入
+- `useBuiltIns: 'entry'`：根据目标环境的引入（需引入`regenerator runtime`和`core-js`）
+
+####  @babel/plugin-transform-runtime
+
+假如你开发的代码需要被别人使用，那么使用useBuiltIns可能会造成全局变量。
+使用@babel/plugin-transform-runtime可将代码创建沙盒环境执行。
+
+#### 处理react
+`@babel/preset-react`可以直接处理jsx
+
+#### 处理typescript
+- `typescript`：tsc命令，ts的编译器。
+- `ts-loader`：调用tsc的loader
+- 使用`tsc --init`生成tsconfig.json
+- _ts默认没有polyfill，使用@babel/preset-typescript预设解决。_
+  - babel负责转换，tsc负责检查（以命令行的形式）
+
+#### ESLint
+静态代码分析工具[文档](http://eslint.cn/)
+`eslint --init`生成配置文件
+
