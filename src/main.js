@@ -1,11 +1,11 @@
 // ESModule
-const esmodule = require("./js/esmodule.js");
+const esModule = require('./js/esmodule.js');
 
 // css less
 // import './js/component'
 
 // CommonJS
-import multiple from './js/commonjs'
+// import multiple from './js/commonjs'
 
 // 测试babel
 // const str = '123'
@@ -14,11 +14,11 @@ import multiple from './js/commonjs'
 // }
 // fun(str)
 // const promise = new Promise(()=>{})
-// console.log(esmodule.default(1,2), esmodule.a())
+console.log(esModule.default(1, 2), esModule.a());
 // console.log(multiple.multiple(3,4))
 
 // 测试sourcemap
-// console.log(abd)
+// console.log(abd);
 
 // 测试react
 // import './react/react_main.jsx'

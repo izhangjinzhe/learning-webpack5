@@ -37,6 +37,9 @@ module.exports = {
                 // '@babel/plugin-transform-block-scoping'
               ]
             }
+          },
+          {
+            loader: 'eslint-loader'
           }
         ]
       },

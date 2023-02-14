@@ -1,9 +1,7 @@
-const esmodule = (a, b) => {
-  return a+b
-}
+const esmodule = (a, b) => a + b;
 
-export const a = function (){
-  return 1+1
-}
+export const a = function () {
+  return 1 + 1;
+};
 
-export default esmodule
+export default esmodule;
