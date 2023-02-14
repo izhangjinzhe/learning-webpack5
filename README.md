@@ -131,6 +131,12 @@ webpack中调用`@babel-core`的工具，可调用`.browerslistrc`配置文件�
 - _ts默认没有polyfill，使用@babel/preset-typescript预设解决。_
   - babel负责转换，tsc负责检查（以命令行的形式）
 
+#### vue
+- `vue`：核心
+- `vue-loader`：官方loader
+- `vue-template-compiler`：解析template必须组建
+- `VueLoaderPlugin`：必须组件
+
 #### ESLint
 静态代码分析工具 [文档](http://eslint.cn/)  
 

@@ -1,33 +1,34 @@
 const path = require("path");
-const { CleanWebpackPlugin } = require('clean-webpack-plugin')
-const HtmlWebpackPlugin = require('html-webpack-plugin')
-const { DefinePlugin } = require('webpack')
+const { CleanWebpackPlugin } = require("clean-webpack-plugin");
+const HtmlWebpackPlugin = require("html-webpack-plugin");
+const { DefinePlugin } = require("webpack");
 
-const CopyPlugin = require('copy-webpack-plugin')
+const { VueLoaderPlugin } = require('vue-loader')
+
+const CopyPlugin = require("copy-webpack-plugin");
 
 module.exports = {
-  mode: 'development',
-  devtool: 'hidden-source-map',
+  mode: "development",
+  devtool: "hidden-source-map",
   // 可以为相对路径或绝对路径
-  entry: path.resolve(__dirname, '../src/main.js'),
+  entry: path.resolve(__dirname, "../src/main.js"),
   output: {
     // 必须为绝对路径
-    path: path.resolve(__dirname, '../dist'),
+    path: path.resolve(__dirname, "../dist"),
     // 输出文件名
     filename: "js/main.js",
-
   },
-  module:{
+  module: {
     rules: [
       // Rule对象
+      // jsx js
       {
-        // jsx js
         test: /\.jsx?$/,
         // 排除
         exclude: /node_modules/,
         use: [
           {
-            loader: 'babel-loader',
+            loader: "babel-loader",
             options: {
               presets: [
                 // ['@babel/preset-env',{target: 'chrome 88'}]
@@ -35,40 +36,50 @@ module.exports = {
               plugins: [
                 // '@babel/plugin-transform-arrow-functions',
                 // '@babel/plugin-transform-block-scoping'
-              ]
-            }
+              ],
+            },
           },
           {
-            loader: 'eslint-loader'
-          }
-        ]
+            loader: "eslint-loader",
+          },
+        ],
       },
+      // ts
       {
         test: /\.ts$/,
         exclude: /node_modules/,
         use: [
           {
-            loader: 'babel-loader'
-          }
-        ]
+            loader: "babel-loader",
+          },
+        ],
       },
+      // vue
       {
-        // 处理css
+        test: /\.vue$/,
+        use: [
+          {
+            loader: "vue-loader",
+          },
+        ],
+      },
+      // css
+      {
         test: /\.css$/,
         // 简写
         // loader: 'css-loader',
         use: [
           // Use对象,从后往前，从右往左
           // 简写
-          'style-loader',
+          "style-loader",
           {
-            loader: 'css-loader',
+            loader: "css-loader",
             options: {
               // 后方需要重新loader的数量
               importLoaders: 1,
               // 启用commonjs语法
-              esModule: false
-            }
+              esModule: false,
+            },
           },
           // 单独抽离文件
           // {
@@ -82,29 +93,29 @@ module.exports = {
           //     }
           //   }
           // }
-          'postcss-loader',
-        ]
+          "postcss-loader",
+        ],
       },
+      // less
       {
-        // 处理less
         test: /\.less$/,
         use: [
-          'style-loader',
+          "style-loader",
           {
-            loader: 'css-loader',
+            loader: "css-loader",
             options: {
               // 后方需要重新loader的数量
               importLoaders: 2,
               // 启用commonjs语法
-              esModule: false
-            }
+              esModule: false,
+            },
           },
-          'postcss-loader',
-          'less-loader',
-        ]
+          "postcss-loader",
+          "less-loader",
+        ],
       },
+      // 图片
       {
-        // 处理图片
         test: /\.(jpe?g|png|gif)$/,
         // webpack5配置
         // type: 'asset/resource', // file-loader
@@ -120,20 +131,20 @@ module.exports = {
 
         // type: 'asset/inline', // url-loader
 
-        type: 'asset', // 自动判断大小打包
+        type: "asset", // 自动判断大小打包
         // asset配置
-        generator:{
-          filename: '[name].[hash:6][ext]',
+        generator: {
+          filename: "[name].[hash:6][ext]",
           // 拼接路径
-          publicPath: './img/',
+          publicPath: "./img/",
           // 输出路径
-          outputPath: 'img',
+          outputPath: "img",
         },
         parser: {
           dataUrlCondition: {
-            maxSize: 8 * 1024 // 4kb
-          }
-        }
+            maxSize: 8 * 1024, // 4kb
+          },
+        },
 
         // use: [
         //   {
@@ -150,41 +161,44 @@ module.exports = {
         //   }
         // ]
       },
+      // 字体文件
       {
         test: /\.(ttf|woff|woff2|otf)$/,
-        type: 'asset/resource',
+        type: "asset/resource",
         generator: {
-          outputPath: 'font/',
-          filename: '[name].[hash:6][ext]',
-          publicPath: './font/'
-        }
-      }
-    ]
+          outputPath: "font/",
+          filename: "[name].[hash:6][ext]",
+          publicPath: "./font/",
+        },
+      },
+    ],
   },
   plugins: [
     // 删除构建文件
     new CleanWebpackPlugin(),
     // index模板
     new HtmlWebpackPlugin({
-      title: 'test',
-      template: './public/index.html'
+      title: "test",
+      template: "./public/index.html",
     }),
     // 定义全局变量
     new DefinePlugin({
-      BASE_URL: '"./"'
+      BASE_URL: '"./"',
     }),
     // 复制根目录下的文件
     new CopyPlugin({
-      patterns:[
+      patterns: [
         {
           // 目录
-          from: 'public',
-          globOptions:{
+          from: "public",
+          globOptions: {
             // 忽略
-            ignore: ['**/index.html']
-          }
-        }
-      ]
-    })
-  ]
-}
+            ignore: ["**/index.html"],
+          },
+        },
+      ],
+    }),
+    // vue必须
+    new VueLoaderPlugin(),
+  ],
+};

@@ -1,5 +1,5 @@
 // ESModule
-const esModule = require('./js/esmodule.js');
+// const esModule = require('./js/esmodule.js');
 
 // css less
 // import './js/component'
@@ -14,7 +14,7 @@ const esModule = require('./js/esmodule.js');
 // }
 // fun(str)
 // const promise = new Promise(()=>{})
-console.log(esModule.default(1, 2), esModule.a());
+// console.log(esModule.default(1, 2), esModule.a());
 // console.log(multiple.multiple(3,4))
 
 // 测试sourcemap
@@ -25,3 +25,6 @@ console.log(esModule.default(1, 2), esModule.a());
 
 // 测试typesctipt
 // import './ts/ts_main.ts'
+
+// 测试vue
+import "./vue/vue_main.js";
