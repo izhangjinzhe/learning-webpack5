@@ -1,6 +1,7 @@
 <template>
   <div>
     <button @click="click">点击</button>
+    hello vue
     {{count}}
   </div>
 </template>

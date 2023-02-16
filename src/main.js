@@ -1,11 +1,19 @@
 // ESModule
-// const esModule = require('./js/esmodule.js');
-
 // css less
-// import './js/component'
+// import "./js/component.js";
 
 // CommonJS
-// import multiple from './js/commonjs'
+// import multiple from "./js/commonjs.js";
+
+// const esModule = require("./js/esmodule.js");
+
+// console.log(esModule.default(1, 2), esModule.a());
+// console.log(multiple.multiple(3, 4));
+
+// 测试HMR
+// if (module.hot) {
+//   module.hot.accept("./js/esmodule.js");
+// }
 
 // 测试babel
 // const str = '123'
@@ -14,17 +22,22 @@
 // }
 // fun(str)
 // const promise = new Promise(()=>{})
-// console.log(esModule.default(1, 2), esModule.a());
-// console.log(multiple.multiple(3,4))
 
 // 测试sourcemap
 // console.log(abd);
 
 // 测试react
-// import './react/react_main.jsx'
+// eslint-disable-next-line import/no-import-module-exports
+import "./react/react_main.jsx";
 
 // 测试typesctipt
 // import './ts/ts_main.ts'
 
 // 测试vue
 import "./vue/vue_main.js";
+
+// 引入js要手动判断更新（cli环境不需要）
+if (module.hot) {
+  module.hot.accept("./react/react_main.jsx");
+  module.hot.accept("./vue/vue_main.js");
+}

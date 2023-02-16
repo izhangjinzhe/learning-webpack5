@@ -1,19 +1,22 @@
-import React, {Component} from 'react'
-import ReactDOM from "react-dom";
-class App extends Component{
-  constructor (props){
-    super(props)
+import React, { Component } from "react";
+import ReactDOM from "react-dom/client";
+
+class App extends Component {
+  constructor(props) {
+    super(props);
     this.state = {
-      message: 'hello world'
-    }
+      message: "hello react",
+    };
   }
-  render(){
-    return(
+
+  render() {
+    return (
       <div>
         <h1>{this.state.message}</h1>
       </div>
-    )
+    );
   }
 }
 
-ReactDOM.render(<App />, document.getElementById('react_app'))
+const root = ReactDOM.createRoot(document.getElementById("react_app"));
+root.render(<App />);

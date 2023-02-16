@@ -1,8 +1,7 @@
 const commonjs = (a, b) => {
-  return a*b
-}
-
+  return a * b;
+};
 
 module.exports = {
-  multiple: commonjs
-}
+  multiple: commonjs,
+};

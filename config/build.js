@@ -3,12 +3,19 @@ const { CleanWebpackPlugin } = require("clean-webpack-plugin");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const { DefinePlugin } = require("webpack");
 
-const { VueLoaderPlugin } = require('vue-loader')
+const ReactRefreshWebpackPlugin = require("@pmmmwh/react-refresh-webpack-plugin");
+
+const { VueLoaderPlugin } = require("vue-loader");
 
 const CopyPlugin = require("copy-webpack-plugin");
 
 module.exports = {
   mode: "development",
+  devServer: {
+    // 热更新
+    hot: true,
+    // liveReload: false,
+  },
   devtool: "hidden-source-map",
   // 可以为相对路径或绝对路径
   entry: path.resolve(__dirname, "../src/main.js"),
@@ -200,5 +207,7 @@ module.exports = {
     }),
     // vue必须
     new VueLoaderPlugin(),
+    // react热更新
+    new ReactRefreshWebpackPlugin(),
   ],
 };

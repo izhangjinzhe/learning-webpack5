@@ -150,3 +150,27 @@ webpack中调用`@babel-core`的工具，可调用`.browerslistrc`配置文件�
 #### 冲突问题
 冲突的本质在于`eslint`既负责了代码质量检测，又负责了一部分的格式美化工作,格式化部分的部分规则和`prettier`不兼容。 能不能让`eslint`只负责代码质量检测而让`prettier`负责美化，`eslint-config-prettier`（关闭冲突的规则） + `eslint-plugin-prettier`（提供格式化能力）。
 
+### devServer和HMR([v1.1.8](https://gitee.com/izhangjinzhe/learnwebpack/tree/v1.1.8))
+
+[文档](https://babel.docschina.org/)
+
+- `webpack-dev-server`：将编译后的文件直接放到内存中（使用memfs）
+- `webpack-dev-middleware`：自定义`server.js`
+- `hot: true`：配合`module.hot.accept`使用
+
+#### 原理
+- devServer提供了静态资源服务（web）和socket服务
+- 修改过的文件被发送为json和js，json记录修改位置，js为源文件
+
+#### js
+
+使用`module.hot.accept`手动引入
+
+#### react
+配置`react-refresh-webpack-plugin`和`react-refresh/babel`
+
+#### vue
+vue-loader自带HMR
+
+
+
