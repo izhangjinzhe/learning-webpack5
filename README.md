@@ -162,7 +162,11 @@ webpack中调用`@babel-core`的工具，可调用`.browerslistrc`配置文件�
 
 - `webpack-dev-server`：将编译后的文件直接放到内存中（使用memfs）
 - `webpack-dev-middleware`：自定义`server.js`
-- `hot: true`：配合`module.hot.accept`使用
+- `hot: true`：配合`module.hot.accept`使用，only：错误回退热更新
+- `host`
+  - `localhost`：通常情况下被解析成127.0.0.1
+  - `127.0.0.1`：回环地址。发出去的包直接被自己接收，在网络层直接被获取。在同一网段下的主机不能访问。
+  - `0.0.0.0`：监听ipv4所有地址。在同一网段下的主机可以访问
 
 #### 原理
 - devServer提供了静态资源服务（web）和socket服务

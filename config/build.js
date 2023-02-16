@@ -13,7 +13,7 @@ module.exports = {
   mode: "development",
   devServer: {
     // 热更新
-    hot: true,
+    hot: true, // only: 错误回退热更新
     // liveReload: false,
     static: {
       // 设置静态资源根目录
