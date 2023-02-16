@@ -15,15 +15,23 @@ module.exports = {
     // 热更新
     hot: true,
     // liveReload: false,
+    static: {
+      // 设置静态资源根目录
+      directory: path.join(__dirname, "../abc"),
+      // 静态资源公共路径（建议和output.publicPath一致）
+      publicPath: "/",
+    },
   },
   devtool: "hidden-source-map",
   // 可以为相对路径或绝对路径
   entry: path.resolve(__dirname, "../src/main.js"),
   output: {
-    // 必须为绝对路径
+    // 输出目录，必须为绝对路径
     path: path.resolve(__dirname, "../dist"),
     // 输出文件名
     filename: "js/main.js",
+    // bundle公共路径
+    publicPath: "/",
   },
   module: {
     rules: [

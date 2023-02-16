@@ -1,18 +1,18 @@
 // ESModule
 // css less
-// import "./js/component.js";
+// import "./abc/component.abc";
 
 // CommonJS
-// import multiple from "./js/commonjs.js";
+// import multiple from "./abc/commonjs.abc";
 
-// const esModule = require("./js/esmodule.js");
+// const esModule = require("./abc/esmodule.abc");
 
 // console.log(esModule.default(1, 2), esModule.a());
 // console.log(multiple.multiple(3, 4));
 
 // 测试HMR
 // if (module.hot) {
-//   module.hot.accept("./js/esmodule.js");
+//   module.hot.accept("./abc/esmodule.abc");
 // }
 
 // 测试babel

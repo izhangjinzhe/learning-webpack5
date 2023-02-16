@@ -14,6 +14,12 @@ cli不是必须的，他只是处理webpack命令及参数，现在框架基本�
 
 ### 配置文件重构重命名([v1.0.2](https://gitee.com/izhangjinzhe/learnwebpack/tree/v1.0.2))
 
+### 路径相关([v1.1.9](https://gitee.com/izhangjinzhe/learnwebpack/tree/v1.1.9))
+
+- `output.publicPath`
+- `devServer.static.publicPath`: 静态资源公共路径
+- `devServer.static.directory`: 静态资源跟路径
+
 ### css-loader的使用([v1.0.3](https://gitee.com/izhangjinzhe/learnwebpack/tree/v1.0.3))
 编译css文件。行内模式（不常用）、cli模式（已废弃）、配置文件模式（常用）。  
 
@@ -171,6 +177,7 @@ webpack中调用`@babel-core`的工具，可调用`.browerslistrc`配置文件�
 
 #### vue
 vue-loader自带HMR
+
 
 
 
