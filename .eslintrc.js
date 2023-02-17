@@ -18,6 +18,7 @@ module.exports = {
     "import/extensions": 0,
     "no-console": 0,
     "func-names": 0,
-    "import/no-import-module-exports": 0
+    "import/no-import-module-exports": 0,
+    "import/no-unresolved": 0
   },
 };

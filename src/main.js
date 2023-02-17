@@ -28,16 +28,16 @@
 
 // 测试react
 // eslint-disable-next-line import/no-import-module-exports
-import "./react/react_main.jsx";
+import "@/react/react_main";
 
 // 测试typesctipt
 // import './ts/ts_main.ts'
 
 // 测试vue
-import "./vue/vue_main.js";
+import "@/vue/vue_main";
 
 // 引入js要手动判断更新（cli环境不需要）
 if (module.hot) {
-  module.hot.accept("./react/react_main.jsx");
-  module.hot.accept("./vue/vue_main.js");
+  module.hot.accept("./react/react_main");
+  module.hot.accept("./vue/vue_main");
 }
