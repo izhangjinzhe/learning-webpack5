@@ -242,3 +242,29 @@ vue-loader 自带 HMR
 #### proxy
 
 [文档](https://webpack.docschina.org/configuration/dev-server/#devserverproxy)
+
+### 配置环境分离
+1. 使用命令行`--env`。
+2. 配置文件分离。
+   - 使用`webpack-merge`合并配置文件
+   - 使用`process.env`环境变量控制babel条件处理
+
+### 代码分离
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
+

@@ -5,8 +5,10 @@
   "main": "index.js",
   "scripts": {
     "middleware": "node server.js",
-    "dev": "webpack serve --config ./config/build.js",
-    "build": "tsc && webpack --config ./config/build.js --watch",
+    "dev": "webpack serve --config ./config/build.js --env production",
+    "build": "tsc && webpack --config ./config/build.js --env development --watch",
+    "dev1": "webpack serve --config ./config/webpack.dev.js",
+    "build1": "tsc && webpack --config ./config/webpack.prod.js --watch",
     "check": "tsc --watch"
   },
   "repository": {
@@ -20,6 +22,7 @@
     "@babel/preset-react": "^7.18.6",
     "@babel/runtime-corejs3": "^7.20.13",
     "core-js": "^3.27.2",
+    "loadsh": "0.0.4",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "regenerator-runtime": "^0.13.11",
@@ -65,6 +68,7 @@
     "vue-loader": "^17.0.1",
     "vue-template-compiler": "^2.7.14",
     "webpack-dev-middleware": "^6.0.1",
-    "webpack-dev-server": "^4.11.1"
+    "webpack-dev-server": "^4.11.1",
+    "webpack-merge": "^5.8.0"
   }
 }
