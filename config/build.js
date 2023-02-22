@@ -24,6 +24,32 @@ module.exports = function (env) {
         "@": resolveApp("./src"),
       },
     },
+    optimization: {
+      // 运行时相关代码打包
+      runtimeChunk: true,
+      chunkIds: "natural", // natural 自然数， named 对调试更友好的可读的 id，deterministic 在不同的编译中不变的短数字 id。有益于长期缓存。在生产模式中会默认开启，size 让初始下载包大小更小的数字 id，total-size 让总下载包大小更小的数字 id
+      // splitChunks: {
+      //   chunks: "all", // async 异步，initial 非异步
+      //   minSize: 20, // 生成 chunk 的最小体,默认 20000
+      //   maxSize: 20, // 将大于 maxSize 个字节的 chunk 分割成不小于minSize的 chunks
+      //   minChunks: 1, // 至少被引入几次
+      //   // 缓存组（细颗粒度控制）
+      //   cacheGroups: {
+      //     // 匹配规则
+      //     loadsh: {
+      //       test: /[\\/]node_modules[\\/](loadsh)[\\/]/,
+      //       filename: "js/[id].loadsh.js",
+      //       chunks: "all",
+      //     },
+      //     // 可匹配文件
+      //     commonjs: {
+      //       test: /commonjs/,
+      //       filename: "js/[name].commonjs.js",
+      //       chunks: "all",
+      //     },
+      //   },
+      // },
+    },
     devServer: {
       // 热更新
       hot: true, // only: 错误回退热更新
@@ -54,34 +80,40 @@ module.exports = function (env) {
         },
       },
     },
-    devtool: "hidden-source-map",
+    devtool: "source-map",
     // 可以为相对路径或绝对路径，相对路径下需配置context基础路径
     // entry: resolveApp("./src/main.js"),
-    // entry: "./src/main.js",
+    entry: "./src/main.js",
     // 多入口
-    entry: {
-      es: {
-        import: resolveApp("./src/js/esmodule.js"),
-        dependOn: ["loadsh"],
-      },
-      cm: {
-        import: resolveApp("./src/js/commonjs.js"),
-        dependOn: ["loadsh"],
-      },
-      main: {
-        import: resolveApp("./src/main.js"),
-      },
-    },
+    // entry: {
+    //   es: {
+    //     import: resolveApp("./src/js/esmodule.js"),
+    //     dependOn: ["loadsh"],
+    //   },
+    //   cm: {
+    //     import: resolveApp("./src/js/commonjs.js"),
+    //     dependOn: ["loadsh"],
+    //   },
+    //   main: {
+    //     import: resolveApp("./src/main.js"),
+    //   },
+    //   loadsh: "loadsh",
+    // },
     // 基础路径，绝对路径，默认node执行路径
     context: resolveApp("./"),
 
     output: {
       // 输出目录，必须为绝对路径
       path: resolveApp("./dist"),
+
       // 输出文件名
-      filename: "js/[name].js",
+      filename: "js/[name].bundle.js",
+
       // bundle公共路径
       // publicPath: "/",
+
+      // 使用魔法注释的name
+      chunkFilename: "js/[name].[hash:6].chunk.js",
     },
     module: {
       rules: [
@@ -266,7 +298,7 @@ module.exports = function (env) {
       // vue必须
       new VueLoaderPlugin(),
       // react热更新
-      // new ReactRefreshWebpackPlugin(),
+      new ReactRefreshWebpackPlugin(),
     ],
   };
 };

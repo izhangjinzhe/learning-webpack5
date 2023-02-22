@@ -7,6 +7,16 @@ function component() {
   const div = document.createElement("div");
 
   div.innerHTML = "hello world";
+  div.onclick = function () {
+    // 懒加载
+    // webpackPrefetch 空闲加载
+    // webpackPreload 空闲加载
+    import(
+      /* webpackChunkName: "lazy" */ /* webpackPreload: true */ "./lazy"
+    ).then((res) => {
+      div.appendChild(res.default);
+    });
+  };
   div.className = "text";
 
   // 图片

@@ -1,8 +1,12 @@
 // css less
-// import "./js/component.js";
+import "./js/component.js";
 
 // CommonJS
 import multiple from "./js/commonjs.js";
+
+import(/* webpackChunkName: "commonjs" */ "./js/commonjs.js").then((res) => {
+  console.log(res, "commonjs");
+});
 
 // ESModule
 const esModule = require("./js/esmodule.js");

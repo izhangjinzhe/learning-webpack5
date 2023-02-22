@@ -249,7 +249,16 @@ vue-loader 自带 HMR
    - 使用`webpack-merge`合并配置文件
    - 使用`process.env`环境变量控制babel条件处理
 
-### 代码分离
+### 代码分离([v1.2.1](https://gitee.com/izhangjinzhe/learnwebpack/tree/v1.2.1))
+1. 使用多入口配置
+2. splitChunks [文档](https://webpack.docschina.org/plugins/split-chunks-plugin/)
+3. 动态导入
+   - `webpackChunkName`
+   - `webpackPrefetch`：用于未来的某个时刻。
+   - `webpackPreload`：在父 chunk 中立即请求。
+4. runtime相关代码抽离
+    - `true, multiple`：为每个入口添加一个只含有 runtime 的额外 chunk
+    - `single`：创建一个在所有生成 chunk 之间共享的运行时文件
 
 
 
