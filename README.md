@@ -273,13 +273,26 @@ vue-loader 自带 HMR
 #### MiniCssExtractPlugin
 抽离css代码
 
+#### css-minimizer-webpack-plugin
+压缩css
+
 #### Hash
 - hash：整个项目的hash一致
 - chunkhash：同一个入口的chunk一致
 - contenthash：对应chunk里的内容
 
+### DLL
+动态链接库(不推荐使用)
+- 生成dll，配置DllPlugin
+- 将dll复制到别的项目，使用DllReferencePlugin
+- 将dll使用add-asset-html-webpack-plugin复制到dist目录
 
+### TerserWebpackPlugin
+使用 terser 来压缩 JavaScript。[文档](https://webpack.docschina.org/plugins/terser-webpack-plugin)
 
+### scope hoisting([v1.2.3](https://gitee.com/izhangjinzhe/learnwebpack/tree/v1.2.3))
+ModuleConcatenationPlugin[文档](https://webpack.docschina.org/plugins/module-concatenation-plugin/#root)
+  
 
 
 

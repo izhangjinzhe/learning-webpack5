@@ -6,10 +6,13 @@ const { DefinePlugin } = require("webpack");
 const ReactRefreshWebpackPlugin = require("@pmmmwh/react-refresh-webpack-plugin");
 
 const { VueLoaderPlugin } = require("vue-loader");
+const TerserPlugin = require("terser-webpack-plugin");
 
 const CopyPlugin = require("copy-webpack-plugin");
 
 const webpack = require("webpack");
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+const CssMinimizerPlugin = require("css-minimizer-webpack-plugin");
 const resolveApp = require("./resolveApp");
 
 // 函数模式，接受命令行--env
@@ -27,6 +30,21 @@ module.exports = function (env) {
     },
 
     optimization: {
+      // 压缩代码
+      minimize: true,
+      minimizer: [
+        new CssMinimizerPlugin(),
+        new TerserPlugin({
+          // 单独抽离注释
+          extractComments: true,
+          // cpu多核构建
+          parallel: true,
+          // terser配置项
+          terserOptions: {
+            keep_fnames: true,
+          },
+        }),
+      ],
       // 运行时相关代码打包
       runtimeChunk: true,
       chunkIds: "natural", // natural 自然数， named 对调试更友好的可读的 id，deterministic 在不同的编译中不变的短数字 id。有益于长期缓存。在生产模式中会默认开启，size 让初始下载包大小更小的数字 id，total-size 让总下载包大小更小的数字 id
@@ -170,7 +188,7 @@ module.exports = function (env) {
           use: [
             // Use对象,从后往前，从右往左
             // 简写
-            "style-loader",
+            MiniCssExtractPlugin.loader,
             {
               loader: "css-loader",
               options: {
@@ -265,7 +283,7 @@ module.exports = function (env) {
           test: /\.(ttf|woff|woff2|otf)$/,
           type: "asset/resource",
           generator: {
-            outputPath: "font/",
+            outputPath: "css/font/",
             filename: "[name].[hash:6][ext]",
             publicPath: "./font/",
           },
@@ -306,6 +324,10 @@ module.exports = function (env) {
         $: "jquery",
         jQuery: "jquery",
       }),
+      new MiniCssExtractPlugin({
+        filename: "css/[name].[hash:4].css",
+      }),
+      new webpack.optimize.ModuleConcatenationPlugin(),
     ],
   };
 };
