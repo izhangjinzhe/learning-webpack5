@@ -260,6 +260,25 @@ vue-loader 自带 HMR
     - `true, multiple`：为每个入口添加一个只含有 runtime 的额外 chunk
     - `single`：创建一个在所有生成 chunk 之间共享的运行时文件
 
+### 性能优化([v1.2.2](https://gitee.com/izhangjinzhe/learnwebpack/tree/v1.2.2))
+
+#### CDN 
+- 配置outputPath
+- 配置externals
+- 使用ejs 模板语法区分环境引入cdn
+
+#### ProvidePlugin(不推荐使用)
+预置全局变量
+
+#### MiniCssExtractPlugin
+抽离css代码
+
+#### Hash
+- hash：整个项目的hash一致
+- chunkhash：同一个入口的chunk一致
+- contenthash：对应chunk里的内容
+
+
 
 
 

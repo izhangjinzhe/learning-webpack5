@@ -71,39 +71,7 @@ module.exports = {
           },
         ],
       },
-      // css
-      {
-        test: /\.css$/,
-        // 简写
-        // loader: 'css-loader',
-        use: [
-          // Use对象,从后往前，从右往左
-          // 简写
-          "style-loader",
-          {
-            loader: "css-loader",
-            options: {
-              // 后方需要重新loader的数量
-              importLoaders: 1,
-              // 启用commonjs语法
-              esModule: false,
-            },
-          },
-          // 单独抽离文件
-          // {
-          //   loader: 'postcss-loader',
-          //   options: {
-          //     postcssOptions:{
-          //       plugins:[
-          //         // require('autoprefixer'),
-          //         require('postcss-preset-env') // 包含autoprefixer
-          //       ]
-          //     }
-          //   }
-          // }
-          "postcss-loader",
-        ],
-      },
+
       // less
       {
         test: /\.less$/,
@@ -174,7 +142,7 @@ module.exports = {
         test: /\.(ttf|woff|woff2|otf)$/,
         type: "asset/resource",
         generator: {
-          outputPath: "font/",
+          outputPath: "css/font/",
           filename: "[name].[hash:6][ext]",
           publicPath: "./font/",
         },

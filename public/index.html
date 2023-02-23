@@ -11,5 +11,9 @@
     <div id="vue_app"></div>
 
 <script src="a.js"></script>
+<!--  手动引入-->
+  <% if (process.env.NODE_ENV === "production") { %>
+    <script src="https://cdn.bootcdn.net/ajax/libs/lodash.js/4.17.21/lodash.min.js"></script>
+  <% } %>
 </body>
 </html>

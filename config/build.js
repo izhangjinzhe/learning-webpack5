@@ -9,6 +9,7 @@ const { VueLoaderPlugin } = require("vue-loader");
 
 const CopyPlugin = require("copy-webpack-plugin");
 
+const webpack = require("webpack");
 const resolveApp = require("./resolveApp");
 
 // 函数模式，接受命令行--env
@@ -24,6 +25,7 @@ module.exports = function (env) {
         "@": resolveApp("./src"),
       },
     },
+
     optimization: {
       // 运行时相关代码打包
       runtimeChunk: true,
@@ -299,6 +301,11 @@ module.exports = function (env) {
       new VueLoaderPlugin(),
       // react热更新
       new ReactRefreshWebpackPlugin(),
+      // 自动加载模块
+      new webpack.ProvidePlugin({
+        $: "jquery",
+        jQuery: "jquery",
+      }),
     ],
   };
 };
