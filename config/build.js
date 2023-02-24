@@ -12,15 +12,19 @@ const CopyPlugin = require("copy-webpack-plugin");
 
 const webpack = require("webpack");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+const { PurgeCSSPlugin } = require("purgecss-webpack-plugin");
 const CssMinimizerPlugin = require("css-minimizer-webpack-plugin");
+const CompressionPlugin = require("compression-webpack-plugin");
+const glob = require("glob");
 const resolveApp = require("./resolveApp");
+const InlineChunkHtmlPlugin = require("react-dev-utils/InlineChunkHtmlPlugin");
 
 // 函数模式，接受命令行--env
 module.exports = function (env) {
   const isProd = env.production;
 
   return {
-    mode: "development",
+    mode: "production",
     resolve: {
       // 解析后缀名
       extensions: [".js", ".jsx", ".ts", ".vue", ".json"],
@@ -30,9 +34,12 @@ module.exports = function (env) {
     },
 
     optimization: {
+      // trtee-shaking添加无用标记
+      usedExports: true,
       // 压缩代码
-      minimize: true,
+      minimize: false,
       minimizer: [
+        // 压缩css
         new CssMinimizerPlugin(),
         new TerserPlugin({
           // 单独抽离注释
@@ -46,29 +53,31 @@ module.exports = function (env) {
         }),
       ],
       // 运行时相关代码打包
-      runtimeChunk: true,
+      runtimeChunk: {
+        name: 'runtime'
+      },
       chunkIds: "natural", // natural 自然数， named 对调试更友好的可读的 id，deterministic 在不同的编译中不变的短数字 id。有益于长期缓存。在生产模式中会默认开启，size 让初始下载包大小更小的数字 id，total-size 让总下载包大小更小的数字 id
-      // splitChunks: {
-      //   chunks: "all", // async 异步，initial 非异步
-      //   minSize: 20, // 生成 chunk 的最小体,默认 20000
-      //   maxSize: 20, // 将大于 maxSize 个字节的 chunk 分割成不小于minSize的 chunks
-      //   minChunks: 1, // 至少被引入几次
-      //   // 缓存组（细颗粒度控制）
-      //   cacheGroups: {
-      //     // 匹配规则
-      //     loadsh: {
-      //       test: /[\\/]node_modules[\\/](loadsh)[\\/]/,
-      //       filename: "js/[id].loadsh.js",
-      //       chunks: "all",
-      //     },
-      //     // 可匹配文件
-      //     commonjs: {
-      //       test: /commonjs/,
-      //       filename: "js/[name].commonjs.js",
-      //       chunks: "all",
-      //     },
-      //   },
-      // },
+      splitChunks: {
+        chunks: "all", // async 异步，initial 非异步
+        minSize: 20, // 生成 chunk 的最小体,默认 20000
+        maxSize: 20, // 将大于 maxSize 个字节的 chunk 分割成不小于minSize的 chunks
+        minChunks: 1, // 至少被引入几次
+        // 缓存组（细颗粒度控制）
+        cacheGroups: {
+          // 匹配规则
+          loadsh: {
+            test: /[\\/]node_modules[\\/](loadsh)[\\/]/,
+            filename: "js/[id].loadsh.js",
+            chunks: "all",
+          },
+          // 可匹配文件
+          commonjs: {
+            test: /commonjs/,
+            filename: "js/[name].commonjs.js",
+            chunks: "all",
+          },
+        },
+      },
     },
     devServer: {
       // 热更新
@@ -183,6 +192,7 @@ module.exports = function (env) {
         // css
         {
           test: /\.css$/,
+          sideEffects: true,
           // 简写
           // loader: 'css-loader',
           use: [
@@ -297,6 +307,20 @@ module.exports = function (env) {
       new HtmlWebpackPlugin({
         title: "test",
         template: resolveApp("./public/index.html"),
+        // 注入位置
+        inject: "body",
+        // 缓存
+        cache: false,
+        // 格式化相关
+        minify: {
+          collapseWhitespace: true,
+          keepClosingSlash: true,
+          removeComments: true,
+          removeRedundantAttributes: true,
+          removeScriptTypeAttributes: true,
+          removeStyleLinkTypeAttributes: true,
+          useShortDoctype: true,
+        },
       }),
       // 定义全局变量
       new DefinePlugin({
@@ -318,16 +342,35 @@ module.exports = function (env) {
       // vue必须
       new VueLoaderPlugin(),
       // react热更新
-      new ReactRefreshWebpackPlugin(),
+      // new ReactRefreshWebpackPlugin(),
       // 自动加载模块
       new webpack.ProvidePlugin({
         $: "jquery",
         jQuery: "jquery",
       }),
+      // 抽离css文件
       new MiniCssExtractPlugin({
         filename: "css/[name].[hash:4].css",
       }),
+      // treeshaking css
+      new PurgeCSSPlugin({
+        // 路径
+        paths: glob.sync(`${resolveApp("./src")}/**/*`, { nodir: true }),
+        // 白名单
+        safelist: ["list"],
+      }),
+      // 作用域提升
       new webpack.optimize.ModuleConcatenationPlugin(),
+      // 压缩代码
+      new CompressionPlugin({
+        // 处理大于此大小的资源
+        threshold: 0,
+        // 匹配文件
+        test: /\.(css|js)$/,
+        // 压缩比
+        minRatio: 0.8,
+      }),
+      new InlineChunkHtmlPlugin(HtmlWebpackPlugin, [/runtime.bundle.js/]),
     ],
   };
 };

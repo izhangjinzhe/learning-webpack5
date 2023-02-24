@@ -108,7 +108,7 @@ webpack5 内部集成静态资源打包
 
 ### html-webpack-plugin 的使用([v1.1.2](https://gitee.com/izhangjinzhe/learnwebpack/tree/v1.1.2))
 
-用于定义 html 模板。
+用于定义 html 模板,minify属性定义模板格式化相关。
 
 ### DefinePlugin 的使用([v1.1.3](https://gitee.com/izhangjinzhe/learnwebpack/tree/v1.1.3))
 
@@ -288,14 +288,32 @@ vue-loader 自带 HMR
 - 将dll使用add-asset-html-webpack-plugin复制到dist目录
 
 ### TerserWebpackPlugin
+
 使用 terser 来压缩 JavaScript。[文档](https://webpack.docschina.org/plugins/terser-webpack-plugin)
+
 
 ### scope hoisting([v1.2.3](https://gitee.com/izhangjinzhe/learnwebpack/tree/v1.2.3))
 ModuleConcatenationPlugin[文档](https://webpack.docschina.org/plugins/module-concatenation-plugin/#root)
   
 
+### tree shaking
 
+摇树优化，消除未调用的代码。
 
+- usedExports：标记某些函数`/* unused harmony export xxx */`，通过terser优化。
+- sideEffects：跳过整个文件/模块，直接查看该文件有无副作用
+  - true：都有副作用（默认值）
+  - false：都无副作用（不会被打包）
+  - 文件路径数组：单独配置有副作用文件
+  - css
+    - 单独配置loader sideEffects
+    - `purgecss-webpack-plugin`[文档](https://purgecss.com/plugins/webpack.html)
+
+### compression-webpack-plugin
+压缩代码
+
+### InlineChunkHtmlPlugin([v1.2.4](https://gitee.com/izhangjinzhe/learnwebpack/tree/v1.2.4))
+将script chunks注入index.html，并删除引用。
 
 
 

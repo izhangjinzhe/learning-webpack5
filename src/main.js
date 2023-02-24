@@ -1,18 +1,20 @@
 // css less
-import "./js/component.js";
+// import "./js/component.js";
 
 // CommonJS
-import multiple from "./js/commonjs.js";
+// import multiple from "./js/commonjs.js";
 
-import(/* webpackChunkName: "commonjs" */ "./js/commonjs.js").then((res) => {
-  console.log(res, "commonjs");
-});
+// import(/* webpackChunkName: "commonjs" */ "./js/commonjs.js").then((res) => {
+//   console.log(res, "commonjs");
+// });
+// const esModule = require("./js/esmodule.js");
 
 // ESModule
-const esModule = require("./js/esmodule.js");
+import { a } from "./js/esmodule.js";
+import "./js/treeshaking";
 
-console.log(esModule.default(1, 2), esModule.a());
-console.log(multiple.multiple(3, 4));
+console.log(a());
+// console.log(multiple.multiple(3, 4));
 
 // 测试HMR
 // if (module.hot) {
