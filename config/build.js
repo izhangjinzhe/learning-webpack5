@@ -16,14 +16,17 @@ const { PurgeCSSPlugin } = require("purgecss-webpack-plugin");
 const CssMinimizerPlugin = require("css-minimizer-webpack-plugin");
 const CompressionPlugin = require("compression-webpack-plugin");
 const glob = require("glob");
-const resolveApp = require("./resolveApp");
 const InlineChunkHtmlPlugin = require("react-dev-utils/InlineChunkHtmlPlugin");
+const SpeedMeasurePlugin = require("speed-measure-webpack-plugin");
+const resolveApp = require("./resolveApp");
+
+const smp = new SpeedMeasurePlugin();
 
 // 函数模式，接受命令行--env
 module.exports = function (env) {
   const isProd = env.production;
-
-  return {
+  // 查看各个阶段构建速度
+  return smp.wrap({
     mode: "production",
     resolve: {
       // 解析后缀名
@@ -54,7 +57,7 @@ module.exports = function (env) {
       ],
       // 运行时相关代码打包
       runtimeChunk: {
-        name: 'runtime'
+        name: "runtime",
       },
       chunkIds: "natural", // natural 自然数， named 对调试更友好的可读的 id，deterministic 在不同的编译中不变的短数字 id。有益于长期缓存。在生产模式中会默认开启，size 让初始下载包大小更小的数字 id，total-size 让总下载包大小更小的数字 id
       splitChunks: {
@@ -372,5 +375,5 @@ module.exports = function (env) {
       }),
       new InlineChunkHtmlPlugin(HtmlWebpackPlugin, [/runtime.bundle.js/]),
     ],
-  };
+  });
 };

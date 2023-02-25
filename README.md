@@ -315,6 +315,9 @@ ModuleConcatenationPlugin[文档](https://webpack.docschina.org/plugins/module-c
 ### InlineChunkHtmlPlugin([v1.2.4](https://gitee.com/izhangjinzhe/learnwebpack/tree/v1.2.4))
 将script chunks注入index.html，并删除引用。
 
+### speed-measure-webpack-plugin
+查看各个阶段构建速度
+
 
 
 
