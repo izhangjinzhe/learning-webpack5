@@ -318,6 +318,10 @@ ModuleConcatenationPlugin[文档](https://webpack.docschina.org/plugins/module-c
 ### speed-measure-webpack-plugin([v1.2.5](https://gitee.com/izhangjinzhe/learnwebpack/tree/v1.2.5))
 查看各个阶段构建速度(兼容性问题)
 
+### 构建后bundle分析
+- 使用`--profile --json=status.json`生成json配置文件，通过`http://webpack.github.io/analyse/` 分析。
+- 使用`webpack-bundle-analyzer`
+
 
 
 

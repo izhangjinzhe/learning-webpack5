@@ -1,5 +1,5 @@
 // css less
-// import "./js/component.js";
+import "./js/component.js";
 
 // CommonJS
 // import multiple from "./js/commonjs.js";

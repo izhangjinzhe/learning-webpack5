@@ -7,7 +7,8 @@
   "scripts": {
     "middleware": "node server.js",
     "dev": "webpack serve --config ./config/build.js --env production",
-    "build": "tsc && webpack --config ./config/build.js --env development --watch",
+    "build": "tsc && webpack --config ./config/build.js --env development",
+    "status": "tsc && webpack --config ./config/build.js --env production --profile --json=status.json",
     "dev1": "webpack serve --config ./config/webpack.dev.js",
     "build1": "tsc && webpack --config ./config/webpack.prod.js --watch",
     "check": "tsc --watch"
@@ -75,6 +76,7 @@
     "url-loader": "^4.1.1",
     "vue-loader": "^17.0.1",
     "vue-template-compiler": "^2.7.14",
+    "webpack-bundle-analyzer": "^4.8.0",
     "webpack-dev-middleware": "^6.0.1",
     "webpack-dev-server": "^4.11.1",
     "webpack-merge": "^5.8.0"

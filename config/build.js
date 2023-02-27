@@ -18,6 +18,7 @@ const CompressionPlugin = require("compression-webpack-plugin");
 const glob = require("glob");
 const InlineChunkHtmlPlugin = require("react-dev-utils/InlineChunkHtmlPlugin");
 const SpeedMeasurePlugin = require("speed-measure-webpack-plugin");
+const { BundleAnalyzerPlugin } = require("webpack-bundle-analyzer");
 const resolveApp = require("./resolveApp");
 
 const smp = new SpeedMeasurePlugin();
@@ -25,9 +26,11 @@ const smp = new SpeedMeasurePlugin();
 // 函数模式，接受命令行--env
 module.exports = function (env) {
   const isProd = env.production;
+  console.log(isProd);
   // 查看各个阶段构建速度
-  return smp.wrap({
-    mode: "production",
+  // smp.wrap(config)
+  return {
+    mode: isProd ? "production" : "development",
     resolve: {
       // 解析后缀名
       extensions: [".js", ".jsx", ".ts", ".vue", ".json"],
@@ -373,7 +376,10 @@ module.exports = function (env) {
         // 压缩比
         minRatio: 0.8,
       }),
+      // bundle注入index.html
       new InlineChunkHtmlPlugin(HtmlWebpackPlugin, [/runtime.bundle.js/]),
+      // 构建后文件分析
+      new BundleAnalyzerPlugin(),
     ],
-  });
+  };
 };
