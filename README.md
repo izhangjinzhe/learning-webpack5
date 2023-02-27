@@ -323,7 +323,8 @@ ModuleConcatenationPlugin[文档](https://webpack.docschina.org/plugins/module-c
 - 使用`--profile --json=status.json`生成json配置文件，通过`http://webpack.github.io/analyse/` 分析。
 - 使用`webpack-bundle-analyzer`
 
-
+### webpack核心原理
+[文档](https://juejin.cn/post/6949040393165996040)
 
 
 
