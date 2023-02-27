@@ -2,7 +2,8 @@
 
 ## webpack 和 webpack-cli 的关系
 
-cli 不是必须的，他只是处理 webpack 命令及参数，现在框架基本都是用自己的 cli。
+cli 不是必须的，他只是处理 webpack 命令及参数，现在框架基本都是用自己的 cli。([v1.2.7](https://gitee.com/izhangjinzhe/learnwebpack/tree/v1.2.7))
+`compiler.js`
 
 ## 为什么使用 webpack
 
