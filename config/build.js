@@ -39,6 +39,10 @@ module.exports = function (env) {
       },
     },
 
+    resolveLoader: {
+      // 设置自定义loader路径
+      modules: ["node_modules", resolveApp("./src/loader/")],
+    },
     optimization: {
       // trtee-shaking添加无用标记
       usedExports: true,
@@ -153,163 +157,203 @@ module.exports = function (env) {
     module: {
       rules: [
         // Rule对象
-        // jsx js
+        // 自定义loader
+        // {
+        //   test: /\.js$/,
+        //   use: [
+        //     {
+        //       loader: "custom-loader-01",
+        //       options: { name: "zhang", age: 18 },
+        //     },
+        //   ],
+        // },
         {
-          test: /\.jsx?$/,
-          // 排除
-          exclude: /node_modules/,
+          test: /\.md$/,
           use: [
-            {
-              loader: "babel-loader",
-              options: {
-                presets: [
-                  // ['@babel/preset-env',{target: 'chrome 88'}]
-                ],
-                plugins: [
-                  // '@babel/plugin-transform-arrow-functions',
-                  // '@babel/plugin-transform-block-scoping'
-                ],
-              },
-            },
-            {
-              loader: "eslint-loader",
-            },
-          ],
-        },
-        // ts
-        {
-          test: /\.ts$/,
-          exclude: /node_modules/,
-          use: [
-            {
-              loader: "babel-loader",
-            },
-          ],
-        },
-        // vue
-        {
-          test: /\.vue$/,
-          use: [
-            {
-              loader: "vue-loader",
-            },
-          ],
-        },
-        // css
-        {
-          test: /\.css$/,
-          sideEffects: true,
-          // 简写
-          // loader: 'css-loader',
-          use: [
-            // Use对象,从后往前，从右往左
-            // 简写
-            MiniCssExtractPlugin.loader,
-            {
-              loader: "css-loader",
-              options: {
-                // 后方需要重新loader的数量
-                importLoaders: 1,
-                // 启用commonjs语法
-                esModule: false,
-              },
-            },
-            // 单独抽离文件
+            // 方法1，使用html-loader
             // {
-            //   loader: 'postcss-loader',
-            //   options: {
-            //     postcssOptions:{
-            //       plugins:[
-            //         // require('autoprefixer'),
-            //         require('postcss-preset-env') // 包含autoprefixer
-            //       ]
-            //     }
-            //   }
-            // }
-            "postcss-loader",
+            //   loader: "html-loader",
+            // },
+            {
+              loader: "md-loader",
+            },
           ],
         },
-        // less
         {
-          test: /\.less$/,
+          test: /\.js$/,
           use: [
-            "style-loader",
             {
-              loader: "css-loader",
+              loader: "custom-loader-02",
               options: {
-                // 后方需要重新loader的数量
-                importLoaders: 2,
-                // 启用commonjs语法
-                esModule: false,
+                presets: ["@babel/preset-env"],
               },
             },
-            "postcss-loader",
-            "less-loader",
           ],
+          // 提前执行
+          enforce: "pre",
         },
-        // 图片
-        {
-          test: /\.(jpe?g|png|gif)$/,
-          // webpack5配置
-          // type: 'asset/resource', // file-loader
 
-          // asset/resource 配置
-          // generator:{
-          //   filename: '[name].[hash:6][ext]',
-          //   // 拼接路径
-          //   publicPath: './dist/img/',
-          //   // 输出路径
-          //   outputPath: 'img',
-          // }
-
-          // type: 'asset/inline', // url-loader
-
-          type: "asset", // 自动判断大小打包
-          // asset配置
-          generator: {
-            filename: "[name].[hash:6][ext]",
-            // 拼接路径
-            publicPath: "./img/",
-            // 输出路径
-            outputPath: "img",
-          },
-          parser: {
-            dataUrlCondition: {
-              maxSize: 8 * 1024, // 4kb
-            },
-          },
-
-          // use: [
-          //   {
-          //     loader: 'url-loader',
-          //     options: {
-          //       limit: 8 * 1024,
-          //       // 拼接路径
-          //       publicPath: './dist/img',
-          //       // 输出路径
-          //       outputPath: 'img',
-          //       // 文件名称占位符
-          //       name: '[name].[hash:6].[ext]'
-          //     }
-          //   }
-          // ]
-        },
-        // 字体文件
-        {
-          test: /\.(ttf|woff|woff2|otf)$/,
-          type: "asset/resource",
-          generator: {
-            outputPath: "css/font/",
-            filename: "[name].[hash:6][ext]",
-            publicPath: "./font/",
-          },
-        },
+        // {
+        //   test: /\.js$/,
+        //   use: ["custom-loader-03"],
+        // },
+        // jsx js
+        // {
+        //   test: /\.jsx?$/,
+        //   // 排除
+        //   exclude: /node_modules/,
+        //   use: [
+        //     {
+        //       loader: "babel-loader",
+        //       options: {
+        //         presets: [
+        //           // ['@babel/preset-env',{target: 'chrome 88'}]
+        //         ],
+        //         plugins: [
+        //           // '@babel/plugin-transform-arrow-functions',
+        //           // '@babel/plugin-transform-block-scoping'
+        //         ],
+        //       },
+        //     },
+        //     {
+        //       loader: "eslint-loader",
+        //     },
+        //   ],
+        // },
+        // // ts
+        // {
+        //   test: /\.ts$/,
+        //   exclude: /node_modules/,
+        //   use: [
+        //     {
+        //       loader: "babel-loader",
+        //     },
+        //   ],
+        // },
+        // // vue
+        // {
+        //   test: /\.vue$/,
+        //   use: [
+        //     {
+        //       loader: "vue-loader",
+        //     },
+        //   ],
+        // },
+        // // css
+        // {
+        //   test: /\.css$/,
+        //   sideEffects: true,
+        //   // 简写
+        //   // loader: 'css-loader',
+        //   use: [
+        //     // Use对象,从后往前，从右往左
+        //     // 简写
+        //     MiniCssExtractPlugin.loader,
+        //     {
+        //       loader: "css-loader",
+        //       options: {
+        //         // 后方需要重新loader的数量
+        //         importLoaders: 1,
+        //         // 启用commonjs语法
+        //         esModule: false,
+        //       },
+        //     },
+        //     // 单独抽离文件
+        //     // {
+        //     //   loader: 'postcss-loader',
+        //     //   options: {
+        //     //     postcssOptions:{
+        //     //       plugins:[
+        //     //         // require('autoprefixer'),
+        //     //         require('postcss-preset-env') // 包含autoprefixer
+        //     //       ]
+        //     //     }
+        //     //   }
+        //     // }
+        //     "postcss-loader",
+        //   ],
+        // },
+        // // less
+        // {
+        //   test: /\.less$/,
+        //   use: [
+        //     "style-loader",
+        //     {
+        //       loader: "css-loader",
+        //       options: {
+        //         // 后方需要重新loader的数量
+        //         importLoaders: 2,
+        //         // 启用commonjs语法
+        //         esModule: false,
+        //       },
+        //     },
+        //     "postcss-loader",
+        //     "less-loader",
+        //   ],
+        // },
+        // // 图片
+        // {
+        //   test: /\.(jpe?g|png|gif)$/,
+        //   // webpack5配置
+        //   // type: 'asset/resource', // file-loader
+        //
+        //   // asset/resource 配置
+        //   // generator:{
+        //   //   filename: '[name].[hash:6][ext]',
+        //   //   // 拼接路径
+        //   //   publicPath: './dist/img/',
+        //   //   // 输出路径
+        //   //   outputPath: 'img',
+        //   // }
+        //
+        //   // type: 'asset/inline', // url-loader
+        //
+        //   type: "asset", // 自动判断大小打包
+        //   // asset配置
+        //   generator: {
+        //     filename: "[name].[hash:6][ext]",
+        //     // 拼接路径
+        //     publicPath: "./img/",
+        //     // 输出路径
+        //     outputPath: "img",
+        //   },
+        //   parser: {
+        //     dataUrlCondition: {
+        //       maxSize: 8 * 1024, // 4kb
+        //     },
+        //   },
+        //
+        //   // use: [
+        //   //   {
+        //   //     loader: 'url-loader',
+        //   //     options: {
+        //   //       limit: 8 * 1024,
+        //   //       // 拼接路径
+        //   //       publicPath: './dist/img',
+        //   //       // 输出路径
+        //   //       outputPath: 'img',
+        //   //       // 文件名称占位符
+        //   //       name: '[name].[hash:6].[ext]'
+        //   //     }
+        //   //   }
+        //   // ]
+        // },
+        // // 字体文件
+        // {
+        //   test: /\.(ttf|woff|woff2|otf)$/,
+        //   type: "asset/resource",
+        //   generator: {
+        //     outputPath: "css/font/",
+        //     filename: "[name].[hash:6][ext]",
+        //     publicPath: "./font/",
+        //   },
+        // },
       ],
     },
     plugins: [
-      // 删除构建文件
-      new CleanWebpackPlugin(),
-      // index模板
+      //   // 删除构建文件
+      //   new CleanWebpackPlugin(),
+      //   // index模板
       new HtmlWebpackPlugin({
         title: "test",
         template: resolveApp("./public/index.html"),
@@ -328,58 +372,58 @@ module.exports = function (env) {
           useShortDoctype: true,
         },
       }),
-      // 定义全局变量
+      //   // 定义全局变量
       new DefinePlugin({
         BASE_URL: '"./"',
       }),
-      // 复制根目录下的文件
-      new CopyPlugin({
-        patterns: [
-          {
-            // 目录
-            from: resolveApp("./public"),
-            globOptions: {
-              // 忽略
-              ignore: ["**/index.html"],
-            },
-          },
-        ],
-      }),
-      // vue必须
-      new VueLoaderPlugin(),
-      // react热更新
-      // new ReactRefreshWebpackPlugin(),
-      // 自动加载模块
-      new webpack.ProvidePlugin({
-        $: "jquery",
-        jQuery: "jquery",
-      }),
-      // 抽离css文件
-      new MiniCssExtractPlugin({
-        filename: "css/[name].[hash:4].css",
-      }),
-      // treeshaking css
-      new PurgeCSSPlugin({
-        // 路径
-        paths: glob.sync(`${resolveApp("./src")}/**/*`, { nodir: true }),
-        // 白名单
-        safelist: ["list"],
-      }),
-      // 作用域提升
-      new webpack.optimize.ModuleConcatenationPlugin(),
-      // 压缩代码
-      new CompressionPlugin({
-        // 处理大于此大小的资源
-        threshold: 0,
-        // 匹配文件
-        test: /\.(css|js)$/,
-        // 压缩比
-        minRatio: 0.8,
-      }),
-      // bundle注入index.html
-      new InlineChunkHtmlPlugin(HtmlWebpackPlugin, [/runtime.bundle.js/]),
-      // 构建后文件分析
-      new BundleAnalyzerPlugin(),
+      //   // 复制根目录下的文件
+      //   new CopyPlugin({
+      //     patterns: [
+      //       {
+      //         // 目录
+      //         from: resolveApp("./public"),
+      //         globOptions: {
+      //           // 忽略
+      //           ignore: ["**/index.html"],
+      //         },
+      //       },
+      //     ],
+      //   }),
+      //   // vue必须
+      //   new VueLoaderPlugin(),
+      //   // react热更新
+      //   // new ReactRefreshWebpackPlugin(),
+      //   // 自动加载模块
+      //   new webpack.ProvidePlugin({
+      //     $: "jquery",
+      //     jQuery: "jquery",
+      //   }),
+      //   // 抽离css文件
+      //   new MiniCssExtractPlugin({
+      //     filename: "css/[name].[hash:4].css",
+      //   }),
+      //   // treeshaking css
+      //   new PurgeCSSPlugin({
+      //     // 路径
+      //     paths: glob.sync(`${resolveApp("./src")}/**/*`, { nodir: true }),
+      //     // 白名单
+      //     safelist: ["list"],
+      //   }),
+      //   // 作用域提升
+      //   new webpack.optimize.ModuleConcatenationPlugin(),
+      //   // 压缩代码
+      //   new CompressionPlugin({
+      //     // 处理大于此大小的资源
+      //     threshold: 0,
+      //     // 匹配文件
+      //     test: /\.(css|js)$/,
+      //     // 压缩比
+      //     minRatio: 0.8,
+      //   }),
+      //   // bundle注入index.html
+      //   new InlineChunkHtmlPlugin(HtmlWebpackPlugin, [/runtime.bundle.js/]),
+      //   // 构建后文件分析
+      //   new BundleAnalyzerPlugin(),
     ],
   };
 };

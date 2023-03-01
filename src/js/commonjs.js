@@ -1,7 +1,7 @@
-const _ = require("loadsh");
+// const _ = require("loadsh");
 
 const commonjs = (a, b) => {
-  console.log(_.add("common", "js"));
+  // console.log(_.add("common", "js"));
   return a * b;
 };
 

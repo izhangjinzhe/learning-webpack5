@@ -1,8 +1,13 @@
 // css less
-import "./js/component.js";
+// import "./js/component.js";
 
 // CommonJS
-// import multiple from "./js/commonjs.js";
+import multiple from "./js/commonjs.js";
+
+// 测试md-loader
+import md from "./md/md.md";
+
+document.body.innerHTML = md;
 
 // import(/* webpackChunkName: "commonjs" */ "./js/commonjs.js").then((res) => {
 //   console.log(res, "commonjs");
@@ -10,10 +15,10 @@ import "./js/component.js";
 // const esModule = require("./js/esmodule.js");
 
 // ESModule
-import { a } from "./js/esmodule.js";
-import "./js/treeshaking";
-
-console.log(a());
+// import { a } from "./js/esmodule.js";
+// import "./js/treeshaking";
+//
+// console.log(a());
 // console.log(multiple.multiple(3, 4));
 
 // 测试HMR

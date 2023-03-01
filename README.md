@@ -327,6 +327,17 @@ ModuleConcatenationPlugin[文档](https://webpack.docschina.org/plugins/module-c
 [文档](https://juejin.cn/post/6949040393165996040)
 
 
+### loader([v1.2.8](https://gitee.com/izhangjinzhe/learnwebpack/tree/v1.2.8))
+
+ - 可使用`resolveLoader`配置自定义loader路径
+ - loader从右到左执行，**在执行loader之前，会先 从左到右 调用 loader 上的 pitch 方法。**
+ - 调整loader顺序，拆分loader后使用enforce属性
+ - 同步loader使用return或this.callback返回
+ - 异步loader使用this.async()代替this.callback
+ - 使用this.getOption获取options配置和schema  
+
+
+
 
 
 
