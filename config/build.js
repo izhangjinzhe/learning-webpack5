@@ -21,6 +21,8 @@ const SpeedMeasurePlugin = require("speed-measure-webpack-plugin");
 const { BundleAnalyzerPlugin } = require("webpack-bundle-analyzer");
 const resolveApp = require("./resolveApp");
 
+const AutoUpload = require("../src/plugins/autoUpload");
+
 const smp = new SpeedMeasurePlugin();
 
 // 函数模式，接受命令行--env
@@ -424,6 +426,11 @@ module.exports = function (env) {
       //   new InlineChunkHtmlPlugin(HtmlWebpackPlugin, [/runtime.bundle.js/]),
       //   // 构建后文件分析
       //   new BundleAnalyzerPlugin(),
+      // 自定义plugin
+      new AutoUpload({
+        name: "a",
+        age: 19,
+      }),
     ],
   };
 };

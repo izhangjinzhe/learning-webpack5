@@ -325,6 +325,7 @@ ModuleConcatenationPlugin[文档](https://webpack.docschina.org/plugins/module-c
 
 ### webpack核心原理
 [文档](https://juejin.cn/post/6949040393165996040)
+[文档](https://juejin.cn/post/7125696644435148831)
 
 
 ### loader([v1.2.8](https://gitee.com/izhangjinzhe/learnwebpack/tree/v1.2.8))
@@ -336,6 +337,8 @@ ModuleConcatenationPlugin[文档](https://webpack.docschina.org/plugins/module-c
  - 异步loader使用this.async()代替this.callback
  - 使用this.getOption获取options配置和schema  
 
+### 自定义plugin([v1.2.9](https://gitee.com/izhangjinzhe/learnwebpack/tree/v1.2.9))
+`src/plugins/autoUpload.js`
 
 
 
